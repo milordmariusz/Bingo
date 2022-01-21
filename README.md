@@ -1,7 +1,9 @@
 # bingo
 
 A new Flutter project.
-
+<p align="center">
+    <img src="ss.PNG">
+    <p/>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
