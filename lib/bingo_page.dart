@@ -1,5 +1,6 @@
 import 'package:bingo/app_colors.dart';
 import 'package:bingo/quotes.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,6 +35,55 @@ class _BingoPageState extends State<BingoPage> {
     }
   }
 
+  void checkWin(){
+    if (_hasBeenPressed1 && _hasBeenPressed2 &&
+        _hasBeenPressed3 && _hasBeenPressed4 &&
+        _hasBeenPressed5 && _hasBeenPressed6 &&
+        _hasBeenPressed7 && _hasBeenPressed8 &&
+        _hasBeenPressed9){
+      CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          title: 'Gratulacje',
+          confirmBtnText: 'Play Again',
+          confirmBtnColor: AppColors.selectedColor,
+          cancelBtnText: 'Quit',
+          showCancelBtn: true,
+          onCancelBtnTap: () {
+            Navigator.popUntil(context, (route) => route.isFirst);
+            _hasBeenPressed1 = false;
+            _hasBeenPressed2 = false;
+            _hasBeenPressed3 = false;
+            _hasBeenPressed4 = false;
+            _hasBeenPressed5 = false;
+            _hasBeenPressed6 = false;
+            _hasBeenPressed7 = false;
+            _hasBeenPressed8 = false;
+            _hasBeenPressed9 = false;
+            randomQuotes.clear();
+            randomPicker = List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+              ..shuffle();
+          },
+          onConfirmBtnTap: () {
+            Navigator.pop(context);
+            _hasBeenPressed1 = false;
+            _hasBeenPressed2 = false;
+            _hasBeenPressed3 = false;
+            _hasBeenPressed4 = false;
+            _hasBeenPressed5 = false;
+            _hasBeenPressed6 = false;
+            _hasBeenPressed7 = false;
+            _hasBeenPressed8 = false;
+            _hasBeenPressed9 = false;
+            randomQuotes.clear();
+            randomPicker = List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+              ..shuffle();
+            setState(() {});
+          });
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     przypisanie(randomQuotes, randomPicker);
@@ -66,6 +116,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed1 = !_hasBeenPressed1;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -96,6 +147,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed2 = !_hasBeenPressed2;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -126,6 +178,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed3 = !_hasBeenPressed3;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -161,6 +214,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed4 = !_hasBeenPressed4;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -191,6 +245,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed5 = !_hasBeenPressed5;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -221,6 +276,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed6 = !_hasBeenPressed6;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -256,6 +312,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed7 = !_hasBeenPressed7;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -286,6 +343,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed8 = !_hasBeenPressed8;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -316,6 +374,7 @@ class _BingoPageState extends State<BingoPage> {
                           onPressed: () {
                             setState(() {
                               _hasBeenPressed9 = !_hasBeenPressed9;
+                              checkWin();
                             });
                           },
                           style: ElevatedButton.styleFrom(
