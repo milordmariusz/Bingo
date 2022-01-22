@@ -94,7 +94,7 @@ class _BingoPageState extends State<BingoPage> {
           children: [
             Padding(
               child: Text(
-                "Jarkowe bingo",
+                "Bingo",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.nunito(
                   color: Colors.white,
