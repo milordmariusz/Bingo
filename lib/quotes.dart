@@ -17,7 +17,7 @@ class Quotes {
     "Egzamin",
     "Narzekanie\nna\nedukację",
     "Dzieci",
-    "20 min\nben\nwykładu",
+    "20 min\nbez\nwykładu",
     "Bezpieczeństwo",
     "Auta",
     "Kontenery",
