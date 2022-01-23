@@ -13,3 +13,6 @@ Perfect for:
 - office workers
 
 More updates in future (for example adding your own quotes).
+
+To download the application to your phone (Android only), 
+you just need to download and install the .APK file.
