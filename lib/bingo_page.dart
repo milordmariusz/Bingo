@@ -2,6 +2,7 @@ import 'package:bingo/app_colors.dart';
 import 'package:bingo/quotes.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Quotes qu = Quotes();
@@ -126,8 +127,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -156,8 +157,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -187,8 +188,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -223,8 +224,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -254,8 +255,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -285,8 +286,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -321,8 +322,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -352,8 +353,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -383,8 +384,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: 120.0,
-                        height: 120.0,
+                        width: (MediaQuery.of(context).size.width-50)/3,
+                        height: (MediaQuery.of(context).size.width-50)/3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
