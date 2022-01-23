@@ -35,12 +35,16 @@ class _BingoPageState extends State<BingoPage> {
     }
   }
 
-  void checkWin(){
-    if (_hasBeenPressed1 && _hasBeenPressed2 &&
-        _hasBeenPressed3 && _hasBeenPressed4 &&
-        _hasBeenPressed5 && _hasBeenPressed6 &&
-        _hasBeenPressed7 && _hasBeenPressed8 &&
-        _hasBeenPressed9){
+  void checkWin() {
+    if (_hasBeenPressed1 &&
+        _hasBeenPressed2 &&
+        _hasBeenPressed3 &&
+        _hasBeenPressed4 &&
+        _hasBeenPressed5 &&
+        _hasBeenPressed6 &&
+        _hasBeenPressed7 &&
+        _hasBeenPressed8 &&
+        _hasBeenPressed9) {
       CoolAlert.show(
           context: context,
           type: CoolAlertType.success,
@@ -61,7 +65,8 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed8 = false;
             _hasBeenPressed9 = false;
             randomQuotes.clear();
-            randomPicker = List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+            randomPicker =
+            List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
               ..shuffle();
           },
           onConfirmBtnTap: () {
@@ -76,12 +81,12 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed8 = false;
             _hasBeenPressed9 = false;
             randomQuotes.clear();
-            randomPicker = List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+            randomPicker =
+            List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
               ..shuffle();
             setState(() {});
           });
     }
-
   }
 
   @override
@@ -101,7 +106,8 @@ class _BingoPageState extends State<BingoPage> {
                   fontSize: 55,
                   fontWeight: FontWeight.bold,
                 ),
-              ), padding: EdgeInsets.fromLTRB(0, 70, 0, 15),
+              ),
+              padding: EdgeInsets.fromLTRB(0, 70, 0, 15),
             ),
             Row(
               children: <Widget>[
@@ -121,22 +127,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed1 ? Colors.blue : Colors.black,
+                            _hasBeenPressed1 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[0],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[0],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -152,22 +158,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed2 ? Colors.blue : Colors.black,
+                            _hasBeenPressed2 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[1],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[1],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -183,22 +189,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed3 ? Colors.blue : Colors.black,
+                            _hasBeenPressed3 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[2],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[2],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                   ],
@@ -219,22 +225,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed4 ? Colors.blue : Colors.black,
+                            _hasBeenPressed4 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[3],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[3],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -250,22 +256,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed5 ? Colors.blue : Colors.black,
+                            _hasBeenPressed5 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[4],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[4],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -281,22 +287,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed6 ? Colors.blue : Colors.black,
+                            _hasBeenPressed6 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[5],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[5],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                   ],
@@ -317,22 +323,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed7 ? Colors.blue : Colors.black,
+                            _hasBeenPressed7 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[6],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[6],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -348,22 +354,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed8 ? Colors.blue : Colors.black,
+                            _hasBeenPressed8 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[7],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[7],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                     SizedBox(height: 10),
@@ -379,22 +385,22 @@ class _BingoPageState extends State<BingoPage> {
                           },
                           style: ElevatedButton.styleFrom(
                             primary:
-                                _hasBeenPressed9 ? Colors.blue : Colors.black,
+                            _hasBeenPressed9 ? Colors.blue : Colors.black,
                             onPrimary: AppColors.selectedColor,
                           ),
                           child: Column(children: <Widget>[
                             Expanded(
                                 child: FittedBox(
-                              fit: BoxFit.contain,
-                              child: Text(
-                                randomQuotes[8],
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.nunito(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ))
+                                  fit: BoxFit.contain,
+                                  child: Text(
+                                    randomQuotes[8],
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.nunito(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ))
                           ])),
                     ),
                   ],
@@ -408,3 +414,52 @@ class _BingoPageState extends State<BingoPage> {
     );
   }
 }
+
+// class MyButton extends StatefulWidget{
+//   MyButton({required this.quote});
+//   String quote;
+//   @override
+//   State<MyButton> createState() => BingoButton(quote: quote,);
+// }
+//
+// class BingoButton extends State<MyButton>{
+//   BingoButton({required this.quote});
+//   String quote;
+//   bool hasBeenPressed = false;
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       width: 120.0,
+//       height: 120.0,
+//       child: ElevatedButton(
+//           onPressed: () {
+//             setState(() {
+//               hasBeenPressed = ! hasBeenPressed;
+//             });//checkWin();
+//           },
+//           style: ElevatedButton.styleFrom(
+//             primary:
+//             hasBeenPressed ? Colors.blue : Colors.black,
+//             onPrimary: AppColors.selectedColor,
+//           ),
+//           child: Column(children: <Widget>[
+//             Expanded(
+//                 child: FittedBox(
+//                   fit: BoxFit.contain,
+//                   child: Text(
+//                     quote,
+//                     textAlign: TextAlign.center,
+//                     style: GoogleFonts.nunito(
+//                       fontSize: 30,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ))
+//           ])),
+//     );
+//   }
+//
+//   bool get getHBP => hasBeenPressed;
+// }
