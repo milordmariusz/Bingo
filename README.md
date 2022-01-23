@@ -2,7 +2,7 @@
 
 It's time for Bingo!
 <p align="center">
-    <img src="ss.PNG">
+    <img src="ss.jpg">
     <p/>
 
 Do you sometimes have a meeting with someone who practically always says the same thing?
