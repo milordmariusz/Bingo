@@ -66,8 +66,8 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed9 = false;
             randomQuotes.clear();
             randomPicker =
-            List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
-              ..shuffle();
+                List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+                  ..shuffle();
           },
           onConfirmBtnTap: () {
             Navigator.pop(context);
@@ -82,8 +82,8 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed9 = false;
             randomQuotes.clear();
             randomPicker =
-            List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
-              ..shuffle();
+                List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
+                  ..shuffle();
             setState(() {});
           });
     }
@@ -94,372 +94,333 @@ class _BingoPageState extends State<BingoPage> {
     przypisanie(randomQuotes, randomPicker);
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: AppColors.gradientColor,
-        body: Column(
-          children: [
-            Padding(
-              child: Text(
-                "Bingo",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.nunito(
-                  color: Colors.white,
-                  fontSize: 55,
-                  fontWeight: FontWeight.bold,
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  AppColors.bgColor,
+                  AppColors.gradientColor,
+                ],
+              )),
+          child: Column(
+            children: [
+              Padding(
+                child: Text(
+                  "Bingo",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunito(
+                    color: Colors.white,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                padding: EdgeInsets.fromLTRB(0, 70, 0, 15),
               ),
-              padding: EdgeInsets.fromLTRB(0, 70, 0, 15),
-            ),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 15),
-                Column(
-                  children: [
-                    SizedBox(height: 30),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed1 = !_hasBeenPressed1;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed1 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[0],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(width: 15),
+                  Column(
+                    children: [
+                      SizedBox(height: 30),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed1 = !_hasBeenPressed1;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed1 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[0],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed2 = !_hasBeenPressed2;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed2 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[1],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed2 = !_hasBeenPressed2;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed2 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[1],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed3 = !_hasBeenPressed3;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed3 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[2],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed3 = !_hasBeenPressed3;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed3 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[2],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 10),
-                Column(
-                  children: [
-                    SizedBox(height: 30),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed4 = !_hasBeenPressed4;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed4 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[3],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      SizedBox(height: 30),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed4 = !_hasBeenPressed4;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed4 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[3],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed5 = !_hasBeenPressed5;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed5 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[4],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed5 = !_hasBeenPressed5;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed5 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[4],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed6 = !_hasBeenPressed6;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed6 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[5],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed6 = !_hasBeenPressed6;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed6 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[5],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 10),
-                Column(
-                  children: [
-                    SizedBox(height: 30),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed7 = !_hasBeenPressed7;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed7 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[6],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      SizedBox(height: 30),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed7 = !_hasBeenPressed7;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed7 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[6],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed8 = !_hasBeenPressed8;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed8 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[7],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed8 = !_hasBeenPressed8;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed8 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[7],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      width: 120.0,
-                      height: 120.0,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              _hasBeenPressed9 = !_hasBeenPressed9;
-                              checkWin();
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary:
-                            _hasBeenPressed9 ? Colors.blue : Colors.black,
-                            onPrimary: AppColors.selectedColor,
-                          ),
-                          child: Column(children: <Widget>[
-                            Expanded(
-                                child: FittedBox(
-                                  fit: BoxFit.contain,
-                                  child: Text(
-                                    randomQuotes[8],
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.nunito(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                ),
+                              ))
+                            ])),
+                      ),
+                      SizedBox(height: 10),
+                      SizedBox(
+                        width: 120.0,
+                        height: 120.0,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _hasBeenPressed9 = !_hasBeenPressed9;
+                                checkWin();
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary:
+                                  _hasBeenPressed9 ? Colors.blue : Colors.black,
+                              onPrimary: AppColors.selectedColor,
+                            ),
+                            child: Column(children: <Widget>[
+                              Expanded(
+                                  child: FittedBox(
+                                fit: BoxFit.contain,
+                                child: Text(
+                                  randomQuotes[8],
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.nunito(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ))
-                          ])),
-                    ),
-                  ],
-                ),
-                SizedBox(width: 15),
-              ],
-            ),
-          ],
+                                ),
+                              ))
+                            ])),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 15),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-// class MyButton extends StatefulWidget{
-//   MyButton({required this.quote});
-//   String quote;
-//   @override
-//   State<MyButton> createState() => BingoButton(quote: quote,);
-// }
-//
-// class BingoButton extends State<MyButton>{
-//   BingoButton({required this.quote});
-//   String quote;
-//   bool hasBeenPressed = false;
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: 120.0,
-//       height: 120.0,
-//       child: ElevatedButton(
-//           onPressed: () {
-//             setState(() {
-//               hasBeenPressed = ! hasBeenPressed;
-//             });//checkWin();
-//           },
-//           style: ElevatedButton.styleFrom(
-//             primary:
-//             hasBeenPressed ? Colors.blue : Colors.black,
-//             onPrimary: AppColors.selectedColor,
-//           ),
-//           child: Column(children: <Widget>[
-//             Expanded(
-//                 child: FittedBox(
-//                   fit: BoxFit.contain,
-//                   child: Text(
-//                     quote,
-//                     textAlign: TextAlign.center,
-//                     style: GoogleFonts.nunito(
-//                       fontSize: 30,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ))
-//           ])),
-//     );
-//   }
-//
-//   bool get getHBP => hasBeenPressed;
-// }
