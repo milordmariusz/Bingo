@@ -1,11 +1,12 @@
+import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:bingo/app_colors.dart';
 import 'package:bingo/quotes.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-Quotes qu = Quotes();
+import 'landing_page.dart';
 
 class BingoPage extends StatefulWidget {
   const BingoPage({Key? key}) : super(key: key);
