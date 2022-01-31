@@ -34,8 +34,8 @@ class Quotes {
 
   Future <List<String>?> getQuotesPreference() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? quotesl = prefs.getStringList('quote');
-    return quotesl;
+    List<String>? quotes = prefs.getStringList('quote');
+    return quotes;
   }
 
   String getQuote(i) => quotesList[i];

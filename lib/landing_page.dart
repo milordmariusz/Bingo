@@ -10,7 +10,6 @@ import 'package:bingo/bingo_page.dart';
 Quotes qu = Quotes();
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class LandingPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BingoPage(),
+                      builder: (context) => BingoPage()
                     ),
                   );
                 },

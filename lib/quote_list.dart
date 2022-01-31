@@ -26,8 +26,13 @@ class _QuoteListState extends State<QuoteList> {
     super.initState();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    if (quoteski.isEmpty){
+      quoteski = qu.quotesList;
+    }
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

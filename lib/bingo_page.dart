@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'landing_page.dart';
+import 'quote_list.dart';
 
 class BingoPage extends StatefulWidget {
   const BingoPage({Key? key}) : super(key: key);
@@ -25,15 +26,44 @@ class _BingoPageState extends State<BingoPage> {
   bool _hasBeenPressed7 = false;
   bool _hasBeenPressed8 = false;
   bool _hasBeenPressed9 = false;
-
-  var randomPicker = List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
-    ..shuffle();
+  bool _hasBeenLoaded = false;
 
   List<String> randomQuotes = [];
+  List<String> quoteski = [];
 
-  void przypisanie(List<String> randomQuotes, List<int> randomPicker) {
+  @override
+  void initState() {
+    print("jeden");
+    qu.getQuotesPreference().then(updateQuote);
+    super.initState();
+  }
+
+  void updateQuote(List<String>? quoteski) {
+    print("trzy");
+    setState(() {
+      this.quoteski = quoteski!;
+      print("dwa");
+      var x = randomGenerator();
+      przypisanie(x);
+    });
+  }
+
+  List<int> randomGenerator() {
+
+    if (quoteski.isEmpty){
+      quoteski = qu.quotesList;
+    }
+    var randomPicker = List<int>.generate(quoteski.length - 1, (i) => i + 1)
+      ..shuffle();
+    return randomPicker;
+  }
+
+  void przypisanie(randomPicker) {
+    if (randomQuotes != quoteski && quoteski.isEmpty == false){
+      randomQuotes.clear();
+    }
     for (int i = 0; i < randomPicker.length; i++) {
-      randomQuotes.add(qu.getQuote(randomPicker[i]));
+      randomQuotes.add(quoteski[randomPicker[i]]);
     }
   }
 
@@ -67,9 +97,7 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed8 = false;
             _hasBeenPressed9 = false;
             randomQuotes.clear();
-            randomPicker =
-                List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
-                  ..shuffle();
+            randomGenerator();
           },
           onConfirmBtnTap: () {
             Navigator.pop(context);
@@ -83,9 +111,9 @@ class _BingoPageState extends State<BingoPage> {
             _hasBeenPressed8 = false;
             _hasBeenPressed9 = false;
             randomQuotes.clear();
-            randomPicker =
-                List<int>.generate(qu.quotesList.length - 1, (i) => i + 1)
-                  ..shuffle();
+            //randomGenerator();
+            var x = randomGenerator();
+            przypisanie(x);
             setState(() {});
           });
     }
@@ -93,19 +121,24 @@ class _BingoPageState extends State<BingoPage> {
 
   @override
   Widget build(BuildContext context) {
-    przypisanie(randomQuotes, randomPicker);
+    print("cztery");
+    if (_hasBeenLoaded == false){
+      updateQuote(quoteski);
+      _hasBeenLoaded = true;
+    }
+    print(quoteski);
     return MaterialApp(
       home: Scaffold(
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  AppColors.bgColor,
-                  AppColors.gradientColor,
-                ],
-              )),
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              AppColors.bgColor,
+              AppColors.gradientColor,
+            ],
+          )),
           child: Column(
             children: [
               Padding(
@@ -128,8 +161,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -143,7 +176,8 @@ class _BingoPageState extends State<BingoPage> {
                               onPrimary: AppColors.selectedColor,
                             ),
                             child: Column(children: <Widget>[
-                              Expanded(child: FittedBox(
+                              Expanded(
+                                  child: FittedBox(
                                 fit: BoxFit.contain,
                                 child: Text(
                                   randomQuotes[0],
@@ -158,8 +192,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -189,8 +223,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -225,8 +259,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -256,8 +290,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -287,8 +321,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -323,8 +357,8 @@ class _BingoPageState extends State<BingoPage> {
                     children: [
                       SizedBox(height: 30),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -354,8 +388,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -385,8 +419,8 @@ class _BingoPageState extends State<BingoPage> {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        width: (MediaQuery.of(context).size.width-50)/3,
-                        height: (MediaQuery.of(context).size.width-50)/3,
+                        width: (MediaQuery.of(context).size.width - 50) / 3,
+                        height: (MediaQuery.of(context).size.width - 50) / 3,
                         child: ElevatedButton(
                             onPressed: () {
                               setState(() {
