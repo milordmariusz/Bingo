@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:core';
 import 'dart:core';
+import 'dart:ffi';
+import 'dart:math';
 
 import 'package:bingo/quotes.dart';
 import 'package:flutter/cupertino.dart';
@@ -178,7 +180,7 @@ class _QuoteListState extends State<QuoteList> {
                                     ],
                                   );
                                 } else {
-                                  _textController.text = quoteski[index];
+                                  _textController.text = quoteDisplay(index);
                                   return AlertDialog(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -188,7 +190,8 @@ class _QuoteListState extends State<QuoteList> {
                                         controller: _textController,
                                         onSubmitted: (value) {
                                           setState(() {
-                                            quoteEdited(_textController.text,index);
+                                            quoteEdited(
+                                                _textController.text, index);
                                           });
                                           Navigator.of(context).pop();
                                         },
@@ -201,7 +204,9 @@ class _QuoteListState extends State<QuoteList> {
                                             ),
                                             onPressed: () {
                                               setState(() {
-                                                quoteEdited(_textController.text,index);
+                                                quoteEdited(
+                                                    _textController.text,
+                                                    index);
                                               });
                                               Navigator.of(context).pop();
                                             },
@@ -294,20 +299,25 @@ class _QuoteListState extends State<QuoteList> {
 
   String quoteDisplay(index) {
     String finalQuote = quoteski[index];
+    finalQuote = finalQuote.replaceAll("-\n", "");
     finalQuote = finalQuote.replaceAll("\n", " ");
-    finalQuote = finalQuote.replaceAll("-", "");
     return (finalQuote);
   }
 
   void quoteSave(quote) {
-    print(quote);
     var finalQuote = "";
+    if(quote.length >= 30){
+      quote = quote.substring(0, 30);
+    }
+    print(quote);
     List<String> quoteCharList = quote.split("");
     int counter = 0;
     bool enterReady = false;
     bool toLong = false;
+    bool firstLetter = true;
     for (int i = 0; i < quoteCharList.length; i++) {
       counter += 1;
+      if (firstLetter) {}
 
       if (counter >= 6) {
         enterReady = true;
@@ -317,6 +327,15 @@ class _QuoteListState extends State<QuoteList> {
         toLong = true;
       }
 
+      if (quoteCharList[i] == '.'){
+        firstLetter = true;
+      }
+
+      if (firstLetter &&
+          quoteCharList[i].toUpperCase().contains(RegExp(r'[A-Z]'))) {
+        quoteCharList[i] = quoteCharList[i].toUpperCase();
+        firstLetter = false;
+      }
       if (quoteCharList[i] == " " && enterReady) {
         finalQuote += "\n";
         enterReady = false;
@@ -324,6 +343,7 @@ class _QuoteListState extends State<QuoteList> {
         counter = 0;
       } else if (toLong) {
         finalQuote += "-\n";
+        finalQuote += quoteCharList[i];
         enterReady = false;
         toLong = false;
         counter = 0;
@@ -336,15 +356,17 @@ class _QuoteListState extends State<QuoteList> {
     _textController.clear();
   }
 
-  void quoteEdited(quote,index){
+  void quoteEdited(quote, index) {
     print(quote);
     var finalQuote = "";
     List<String> quoteCharList = quote.split("");
     int counter = 0;
     bool enterReady = false;
     bool toLong = false;
+    bool firstLetter = true;
     for (int i = 0; i < quoteCharList.length; i++) {
       counter += 1;
+      if (firstLetter) {}
 
       if (counter >= 6) {
         enterReady = true;
@@ -354,6 +376,15 @@ class _QuoteListState extends State<QuoteList> {
         toLong = true;
       }
 
+      if (quoteCharList[i] == '.'){
+        firstLetter = true;
+      }
+
+      if (firstLetter &&
+          quoteCharList[i].toUpperCase().contains(RegExp(r'[A-Z]'))) {
+        quoteCharList[i] = quoteCharList[i].toUpperCase();
+        firstLetter = false;
+      }
       if (quoteCharList[i] == " " && enterReady) {
         finalQuote += "\n";
         enterReady = false;
@@ -361,6 +392,7 @@ class _QuoteListState extends State<QuoteList> {
         counter = 0;
       } else if (toLong) {
         finalQuote += "-\n";
+        finalQuote += quoteCharList[i];
         enterReady = false;
         toLong = false;
         counter = 0;
@@ -368,7 +400,7 @@ class _QuoteListState extends State<QuoteList> {
         finalQuote += quoteCharList[i];
       }
     }
-    quoteski[index]=finalQuote;
+    quoteski[index] = finalQuote;
     qu.saveQuotesPreference(quoteski);
     _textController.clear();
   }
