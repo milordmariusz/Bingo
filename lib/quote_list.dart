@@ -43,40 +43,68 @@ class _QuoteListState extends State<QuoteList> {
                     key: UniqueKey(),
                     child: Card(
                       child: ListTile(
-                        title: Text('${quoteski[index]}'),
+                        // title: Text('${quoteski[index]}'),
+                        title: Text(quoteDisplay(index)),
                         onLongPress: () {
                           setState(() {
                             quoteski.removeAt(index);
                             qu.saveQuotesPreference(quoteski);
                           });
                         },
-                        trailing: IconButton(
-                          icon: Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              quoteski.removeAt(index);
-                              qu.saveQuotesPreference(quoteski);
-                            });
-                          },
-                        ),
                       ),
                     ),
                     background: Container(
                       color: Colors.red,
-                      padding: EdgeInsets.only(right: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Icon(
-                            Icons.delete,
-                          )
-                        ],
+                      child: Align(
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              " Usuń",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ],
+                        ),
+                        alignment: Alignment.centerLeft,
                       ),
                     ),
-                    onDismissed: (direction) {
+                    secondaryBackground: Container(
+                      color: Colors.red,
+                      child: Align(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              " Usuń",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                        alignment: Alignment.centerRight,
+                      ),
+                    ),
+                    onDismissed: (DismissDirection direction) {
                       setState(() {
                         quoteski.removeAt(index);
                         qu.saveQuotesPreference(quoteski);
@@ -102,9 +130,7 @@ class _QuoteListState extends State<QuoteList> {
                         controller: _textController,
                         onSubmitted: (value) {
                           setState(() {
-                            quoteski.add(_textController.text);
-                            qu.saveQuotesPreference(quoteski);
-                            _textController.clear();
+                            quoteSave(_textController.text);
                           });
                           Navigator.of(context).pop();
                         },
@@ -113,9 +139,10 @@ class _QuoteListState extends State<QuoteList> {
                         FloatingActionButton(
                             onPressed: () {
                               setState(() {
-                                quoteski.add(_textController.text);
-                                qu.saveQuotesPreference(quoteski);
-                                _textController.clear();
+                                quoteSave(_textController.text);
+                                // quoteski.add(_textController.text);
+                                // qu.saveQuotesPreference(quoteski);
+                                // _textController.clear();
                               });
                               Navigator.of(context).pop();
                             },
@@ -132,5 +159,50 @@ class _QuoteListState extends State<QuoteList> {
     setState(() {
       this.quoteski = quoteski!;
     });
+  }
+
+  String quoteDisplay(index){
+    String finalQuote = quoteski[index];
+    finalQuote = finalQuote.replaceAll("\n", " ");
+    return(finalQuote);
+  }
+
+  void quoteSave(quote){
+    print(quote);
+    var finalQuote = "";
+    List<String> quoteCharList = quote.split("");
+    int counter = 0;
+    bool enterReady = false;
+    bool toLong = false;
+    for (int i = 0; i<quoteCharList.length; i++){
+      counter +=1;
+
+      if (counter >= 6) {
+        enterReady = true;
+      }
+
+      if (counter >= 15) {
+        toLong = true;
+      }
+
+      if (quoteCharList[i] == " " && enterReady) {
+        finalQuote += "\n";
+        enterReady = false;
+        toLong = false;
+        counter = 0;
+      }
+      else if (toLong) {
+        finalQuote += "-\n";
+        enterReady = false;
+        toLong = false;
+        counter = 0;
+      }
+      else {
+        finalQuote += quoteCharList[i];
+      }
+    }
+    quoteski.add(finalQuote);
+    qu.saveQuotesPreference(quoteski);
+    _textController.clear();
   }
 }
