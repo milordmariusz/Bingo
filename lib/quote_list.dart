@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 import 'landing_page.dart';
 
 class QuoteList extends StatefulWidget {
@@ -18,59 +17,111 @@ class QuoteList extends StatefulWidget {
 class _QuoteListState extends State<QuoteList> {
   var _textController = TextEditingController();
   final data = GetStorage();
-  List <String> quoteski = [];
+  List<String> quoteski = [];
+  String input = "";
 
   @override
-  void initState(){
+  void initState() {
     qu.getQuotesPreference().then(updateQuote);
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    if (quoteski.isEmpty){
+    if (quoteski.isEmpty) {
       quoteski = qu.quotesList;
     }
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: TextField(
-            controller: _textController,
-          ),
-        ),
+        appBar: AppBar(title: Text("Lista cytatów")),
         body: quoteski.length > 0
-            ? ListView.separated(
+            ? ListView.builder(
                 itemCount: quoteski.length,
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('${quoteski[index]}'),
-                    onLongPress: (){
+                  return Dismissible(
+                    key: UniqueKey(),
+                    child: Card(
+                      child: ListTile(
+                        title: Text('${quoteski[index]}'),
+                        onLongPress: () {
+                          setState(() {
+                            quoteski.removeAt(index);
+                            qu.saveQuotesPreference(quoteski);
+                          });
+                        },
+                        trailing: IconButton(
+                          icon: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              quoteski.removeAt(index);
+                              qu.saveQuotesPreference(quoteski);
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    background: Container(
+                      color: Colors.red,
+                      padding: EdgeInsets.only(right: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Icon(
+                            Icons.delete,
+                          )
+                        ],
+                      ),
+                    ),
+                    onDismissed: (direction) {
                       setState(() {
                         quoteski.removeAt(index);
                         qu.saveQuotesPreference(quoteski);
                       });
                     },
-                    trailing: Icon(Icons.remove_circle_outline),
                   );
                 },
-          separatorBuilder: (BuildContext context, int index)=>
-              const Divider(
-                color:Colors.black,
-              ),
-        )
+              )
             : Center(
                 child: Text('Brak danych'),
               ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.save),
+          child: Icon(Icons.add),
           onPressed: () {
-            setState((){
-              quoteski.add(_textController.text);
-              qu.saveQuotesPreference(quoteski);
-              _textController.clear();
-            });
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      title: Text("Wprowadź cytat"),
+                      content: TextField(
+                        controller: _textController,
+                        onSubmitted: (value) {
+                          setState(() {
+                            quoteski.add(_textController.text);
+                            qu.saveQuotesPreference(quoteski);
+                            _textController.clear();
+                          });
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      actions: <Widget>[
+                        FloatingActionButton(
+                            onPressed: () {
+                              setState(() {
+                                quoteski.add(_textController.text);
+                                qu.saveQuotesPreference(quoteski);
+                                _textController.clear();
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Dodaj")),
+                      ]);
+                });
           },
         ),
       ),

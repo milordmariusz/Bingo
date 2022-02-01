@@ -53,7 +53,7 @@ class _BingoPageState extends State<BingoPage> {
     if (quoteski.isEmpty){
       quoteski = qu.quotesList;
     }
-    var randomPicker = List<int>.generate(quoteski.length - 1, (i) => i + 1)
+    var randomPicker = List<int>.generate(quoteski.length-1, (i) => i+1)
       ..shuffle();
     return randomPicker;
   }
