@@ -81,9 +81,9 @@ class _BingoPageState extends State<BingoPage> {
           context: context,
           type: CoolAlertType.success,
           title: 'Gratulacje',
-          confirmBtnText: 'Play Again',
+          confirmBtnText: 'Graj dalej',
           confirmBtnColor: AppColors.selectedColor,
-          cancelBtnText: 'Quit',
+          cancelBtnText: 'Wyjdź',
           showCancelBtn: true,
           onCancelBtnTap: () {
             Navigator.popUntil(context, (route) => route.isFirst);
@@ -173,7 +173,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed1 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -204,7 +204,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed2 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -235,7 +235,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed3 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -271,7 +271,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed4 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -302,7 +302,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed5 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -333,7 +333,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed6 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -369,7 +369,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed7 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -400,7 +400,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed8 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(
@@ -431,7 +431,7 @@ class _BingoPageState extends State<BingoPage> {
                             style: ElevatedButton.styleFrom(
                               primary:
                                   _hasBeenPressed9 ? Colors.blue : Colors.black,
-                              onPrimary: AppColors.selectedColor,
+                              onPrimary: Colors.white,
                             ),
                             child: Column(children: <Widget>[
                               Expanded(

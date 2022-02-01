@@ -10,13 +10,12 @@ import 'package:bingo/bingo_page.dart';
 Quotes qu = Quotes();
 
 class LandingPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 150, 10, 10),
         height: size.height,
         width: size.width,
         decoration: BoxDecoration(
@@ -35,18 +34,18 @@ class LandingPage extends StatelessWidget {
               'Bingo!',
               textAlign: TextAlign.center,
               style: GoogleFonts.nunito(
-                  color: AppColors.selectedColor,
-                  fontSize: 65,
+                  color: Colors.white,
+                  fontSize: 100,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 300),
+            SizedBox(height: 200),
             Container(
               width: size.width * 0.8,
               height: 70,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.buttonColor,
-                  onPrimary: AppColors.selectedColor,
+                  onPrimary: Colors.white,
                 ),
                 child: Text(
                   'Generuj planszę',
@@ -58,9 +57,7 @@ class LandingPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => BingoPage()
-                    ),
+                    MaterialPageRoute(builder: (context) => BingoPage()),
                   );
                 },
               ),
@@ -72,7 +69,7 @@ class LandingPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.buttonColor,
-                  onPrimary: AppColors.selectedColor,
+                  onPrimary: Colors.white,
                 ),
                 child: Text(
                   'Lista cytatów',

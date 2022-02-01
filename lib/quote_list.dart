@@ -6,7 +6,9 @@ import 'package:bingo/quotes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import 'app_colors.dart';
 import 'landing_page.dart';
 
 class QuoteList extends StatefulWidget {
@@ -33,90 +35,116 @@ class _QuoteListState extends State<QuoteList> {
     }
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Lista cytatów")),
-        body: quoteski.length > 0
-            ? ListView.builder(
-                itemCount: quoteski.length,
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: UniqueKey(),
-                    child: Card(
-                      child: ListTile(
-                        // title: Text('${quoteski[index]}'),
-                        title: Text(quoteDisplay(index)),
-                        onLongPress: () {
-                          setState(() {
-                            quoteski.removeAt(index);
-                            qu.saveQuotesPreference(quoteski);
-                          });
-                        },
+        body: Container(
+
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              AppColors.bgColor,
+              AppColors.gradientColor,
+            ],
+          )),
+          child: quoteski.length > 0
+              ? ListView.separated(
+                  itemCount: quoteski.length,
+                  padding: EdgeInsets.fromLTRB(40, 40, 40, 80),
+                  itemBuilder: (context, index) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
                       ),
-                    ),
-                    background: Container(
-                      color: Colors.red,
-                      child: Align(
-                        child: Row(
-                          children: <Widget>[
-                            SizedBox(
-                              width: 12,
+                        color: Colors.red,
+                        //shadowColor: Colors.transparent,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Dismissible(
+                          key: UniqueKey(),
+                          child: ListTile(
+                            tileColor: AppColors.buttonColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(13.0),
                             ),
-                            Icon(
-                              Icons.delete,
-                              color: Colors.white,
+                            title: Text(
+                              quoteDisplay(index),
+                              style: GoogleFonts.nunito(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              " Usuń",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+                          ),
+                          background: Container(
+                            color: Colors.red,
+                            child: Align(
+                              child: Row(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    " Usuń",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                ],
                               ),
-                              textAlign: TextAlign.right,
+                              alignment: Alignment.centerLeft,
                             ),
-                          ],
-                        ),
-                        alignment: Alignment.centerLeft,
-                      ),
-                    ),
-                    secondaryBackground: Container(
-                      color: Colors.red,
-                      child: Align(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              " Usuń",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
+                          ),
+                          secondaryBackground: Container(
+                            color: Colors.red,
+                            child: Align(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    " Usuń",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
                               ),
-                              textAlign: TextAlign.right,
+                              alignment: Alignment.centerRight,
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                          ],
+                          ),
+                          onDismissed: (DismissDirection direction) {
+                            setState(() {
+                              quoteski.removeAt(index);
+                              qu.saveQuotesPreference(quoteski);
+                            });
+                          },
                         ),
-                        alignment: Alignment.centerRight,
                       ),
-                    ),
-                    onDismissed: (DismissDirection direction) {
-                      setState(() {
-                        quoteski.removeAt(index);
-                        qu.saveQuotesPreference(quoteski);
-                      });
-                    },
-                  );
-                },
-              )
-            : Center(
-                child: Text('Brak danych'),
-              ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(height: 8,);
+                  },
+                )
+              : Center(
+                  child: Text('Brak danych'),
+                ),
+        ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.selectedColor,
           child: Icon(Icons.add),
           onPressed: () {
             showDialog(
@@ -137,12 +165,10 @@ class _QuoteListState extends State<QuoteList> {
                       ),
                       actions: <Widget>[
                         FloatingActionButton(
+                            backgroundColor: AppColors.selectedColor,
                             onPressed: () {
                               setState(() {
                                 quoteSave(_textController.text);
-                                // quoteski.add(_textController.text);
-                                // qu.saveQuotesPreference(quoteski);
-                                // _textController.clear();
                               });
                               Navigator.of(context).pop();
                             },
@@ -161,21 +187,22 @@ class _QuoteListState extends State<QuoteList> {
     });
   }
 
-  String quoteDisplay(index){
+  String quoteDisplay(index) {
     String finalQuote = quoteski[index];
     finalQuote = finalQuote.replaceAll("\n", " ");
-    return(finalQuote);
+    finalQuote = finalQuote.replaceAll("-", "");
+    return (finalQuote);
   }
 
-  void quoteSave(quote){
+  void quoteSave(quote) {
     print(quote);
     var finalQuote = "";
     List<String> quoteCharList = quote.split("");
     int counter = 0;
     bool enterReady = false;
     bool toLong = false;
-    for (int i = 0; i<quoteCharList.length; i++){
-      counter +=1;
+    for (int i = 0; i < quoteCharList.length; i++) {
+      counter += 1;
 
       if (counter >= 6) {
         enterReady = true;
@@ -190,14 +217,12 @@ class _QuoteListState extends State<QuoteList> {
         enterReady = false;
         toLong = false;
         counter = 0;
-      }
-      else if (toLong) {
+      } else if (toLong) {
         finalQuote += "-\n";
         enterReady = false;
         toLong = false;
         counter = 0;
-      }
-      else {
+      } else {
         finalQuote += quoteCharList[i];
       }
     }
