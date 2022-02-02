@@ -1,4 +1,4 @@
-# bingo
+# Bingo
 
 It's time for Bingo!
 <p float="left">
