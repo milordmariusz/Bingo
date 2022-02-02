@@ -50,185 +50,239 @@ class _QuoteListState extends State<QuoteList> {
               AppColors.gradientColor,
             ],
           )),
-          child: quoteski.length > 0
-              ? ListView.separated(
-                  itemCount: quoteski.length,
-                  padding: EdgeInsets.fromLTRB(40, 40, 40, 80),
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 60,
+                child: Align(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Edytuj",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.right,
                       ),
-                      color: AppColors.buttonColor,
-                      //shadowColor: Colors.transparent,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Dismissible(
-                          key: UniqueKey(),
-                          child: ListTile(
-                            tileColor: AppColors.buttonColor,
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Icon(
+                        Icons.swipe_rounded,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        "Usuń",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ],
+                  ),
+                  alignment: Alignment.bottomCenter,
+                ),
+              ),
+              SizedBox(height: 15,),
+              Expanded(
+                child: quoteski.length > 0
+                    ? ListView.separated(
+                        itemCount: quoteski.length,
+                        padding: EdgeInsets.fromLTRB(40, 5, 40, 80),
+                        itemBuilder: (context, index) {
+                          return Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
-                            title: Text(
-                              quoteDisplay(index),
-                              style: GoogleFonts.nunito(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          background: Container(
-                            color: Colors.orangeAccent,
-                            child: Align(
-                              child: Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: 12,
+                            color: AppColors.buttonColor,
+                            //shadowColor: Colors.transparent,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Dismissible(
+                                key: UniqueKey(),
+                                child: ListTile(
+                                  tileColor: AppColors.buttonColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
+                                  title: Text(
+                                    quoteDisplay(index),
+                                    style: GoogleFonts.nunito(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
-                                    "Edytuj",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
+                                ),
+                                background: Container(
+                                  color: Colors.orangeAccent,
+                                  child: Align(
+                                    child: Row(
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          "Edytuj",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ],
                                     ),
-                                    textAlign: TextAlign.right,
+                                    alignment: Alignment.centerLeft,
                                   ),
-                                ],
-                              ),
-                              alignment: Alignment.centerLeft,
-                            ),
-                          ),
-                          secondaryBackground: Container(
-                            color: Colors.red,
-                            child: Align(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.delete,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    " Usuń",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
+                                ),
+                                secondaryBackground: Container(
+                                  color: Colors.red,
+                                  child: Align(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.delete,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          " Usuń",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                          textAlign: TextAlign.right,
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                      ],
                                     ),
-                                    textAlign: TextAlign.right,
+                                    alignment: Alignment.centerRight,
                                   ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                ],
-                              ),
-                              alignment: Alignment.centerRight,
-                            ),
-                          ),
-                          onDismissed: (direction) async {
-                            if (direction == DismissDirection.endToStart) {
-                              setState(() {
-                                quoteski.removeAt(index);
-                                qu.saveQuotesPreference(quoteski);
-                              });
-                            }
-                          },
-                          confirmDismiss: (DismissDirection direction) async {
-                            return await showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                if (quoteski.length > 10 &&
-                                    DismissDirection.endToStart == direction) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    title: const Text("Potwierdzenie"),
-                                    content: const Text(
-                                        "Czy jesteś pewien, że chcesz usunąć ten element?"),
-                                    actions: <Widget>[
-                                      ElevatedButton(
-                                          onPressed: () =>
-                                              Navigator.of(context).pop(true),
-                                          child: const Text("USUŃ")),
-                                      ElevatedButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(false),
-                                        child: const Text("ANULUJ"),
-                                      ),
-                                    ],
-                                  );
-                                } else if (DismissDirection.endToStart ==
-                                    direction) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    title: const Text("Błąd"),
-                                    content: const Text(
-                                        "Nie możesz usunąć tego elementu. Minimalna ilośc elementów która musi być w liście to 10"),
-                                    actions: <Widget>[
-                                      ElevatedButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(false),
-                                        child: const Text("ANULUJ"),
-                                      ),
-                                    ],
-                                  );
-                                } else {
-                                  _textController.text = quoteDisplay(index);
-                                  return AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      title: Text("Edytuj cytat"),
-                                      content: TextField(
-                                        controller: _textController,
-                                        onSubmitted: (value) {
-                                          setState(() {
-                                            quoteEdited(
-                                                _textController.text, index);
-                                          });
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              primary: AppColors.buttonColor,
-                                              onPrimary: Colors.white,
+                                ),
+                                onDismissed: (direction) async {
+                                  if (direction ==
+                                      DismissDirection.endToStart) {
+                                    setState(() {
+                                      quoteski.removeAt(index);
+                                      qu.saveQuotesPreference(quoteski);
+                                    });
+                                  }
+                                },
+                                confirmDismiss:
+                                    (DismissDirection direction) async {
+                                  return await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      if (quoteski.length > 10 &&
+                                          DismissDirection.endToStart ==
+                                              direction) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          title: const Text("Potwierdzenie"),
+                                          content: const Text(
+                                              "Czy jesteś pewien, że chcesz usunąć ten element?"),
+                                          actions: <Widget>[
+                                            ElevatedButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context)
+                                                        .pop(true),
+                                                child: const Text("USUŃ")),
+                                            ElevatedButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context)
+                                                      .pop(false),
+                                              child: const Text("ANULUJ"),
                                             ),
-                                            onPressed: () {
-                                              setState(() {
-                                                quoteEdited(
-                                                    _textController.text,
-                                                    index);
-                                              });
-                                              Navigator.of(context).pop();
-                                            },
-                                            child: Text("Edytuj")),
-                                      ]);
-                                }
-                              },
-                            );
-                          },
-                        ),
+                                          ],
+                                        );
+                                      } else if (DismissDirection.endToStart ==
+                                          direction) {
+                                        return AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          title: const Text("Błąd"),
+                                          content: const Text(
+                                              "Nie możesz usunąć tego elementu. Minimalna ilośc elementów która musi być w liście to 10"),
+                                          actions: <Widget>[
+                                            ElevatedButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context)
+                                                      .pop(false),
+                                              child: const Text("ANULUJ"),
+                                            ),
+                                          ],
+                                        );
+                                      } else {
+                                        _textController.text =
+                                            quoteDisplay(index);
+                                        return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            title: Text("Edytuj cytat"),
+                                            content: TextField(
+                                              controller: _textController,
+                                              onSubmitted: (value) {
+                                                setState(() {
+                                                  quoteEdited(
+                                                      _textController.text,
+                                                      index);
+                                                });
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            actions: <Widget>[
+                                              ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    primary:
+                                                        AppColors.buttonColor,
+                                                    onPrimary: Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      quoteEdited(
+                                                          _textController.text,
+                                                          index);
+                                                    });
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text("Edytuj")),
+                                            ]);
+                                      }
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            height: 8,
+                          );
+                        },
+                      )
+                    : Center(
+                        child: Text('Brak danych'),
                       ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 8,
-                    );
-                  },
-                )
-              : Center(
-                  child: Text('Brak danych'),
-                ),
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.selectedColor,
@@ -306,7 +360,7 @@ class _QuoteListState extends State<QuoteList> {
 
   void quoteSave(quote) {
     var finalQuote = "";
-    if(quote.length >= 30){
+    if (quote.length >= 30) {
       quote = quote.substring(0, 30);
     }
     print(quote);
@@ -319,7 +373,7 @@ class _QuoteListState extends State<QuoteList> {
       counter += 1;
       if (firstLetter) {}
 
-      if (counter >= 6) {
+      if (counter >= 4) {
         enterReady = true;
       }
 
@@ -327,7 +381,7 @@ class _QuoteListState extends State<QuoteList> {
         toLong = true;
       }
 
-      if (quoteCharList[i] == '.'){
+      if (quoteCharList[i] == '.') {
         firstLetter = true;
       }
 
@@ -359,7 +413,7 @@ class _QuoteListState extends State<QuoteList> {
   void quoteEdited(quote, index) {
     print(quote);
     var finalQuote = "";
-    if(quote.length >= 30){
+    if (quote.length >= 30) {
       quote = quote.substring(0, 30);
     }
     List<String> quoteCharList = quote.split("");
@@ -371,7 +425,7 @@ class _QuoteListState extends State<QuoteList> {
       counter += 1;
       if (firstLetter) {}
 
-      if (counter >= 6) {
+      if (counter >= 4) {
         enterReady = true;
       }
 
@@ -379,7 +433,7 @@ class _QuoteListState extends State<QuoteList> {
         toLong = true;
       }
 
-      if (quoteCharList[i] == '.'){
+      if (quoteCharList[i] == '.') {
         firstLetter = true;
       }
 
