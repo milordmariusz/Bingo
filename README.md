@@ -1,9 +1,12 @@
 # bingo
 
 It's time for Bingo!
-<p align="center">
-    <img src="ss.jpg">
-    <p/>
+<p float="left">
+  <img src="/ss1.png"/>
+  <img src="/ss2.png"/> 
+  <img src="/ss3.png"/>
+</p>
+
 
 Do you sometimes have a meeting with someone who practically always says the same thing?
 Then this is the perfect app for you. 
