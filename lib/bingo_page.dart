@@ -33,16 +33,13 @@ class _BingoPageState extends State<BingoPage> {
 
   @override
   void initState() {
-    print("jeden");
     qu.getQuotesPreference().then(updateQuote);
     super.initState();
   }
 
   void updateQuote(List<String>? quoteski) {
-    print("trzy");
     setState(() {
       this.quoteski = quoteski!;
-      print("dwa");
       var x = randomGenerator();
       przypisanie(x);
     });
@@ -121,12 +118,10 @@ class _BingoPageState extends State<BingoPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("cztery");
     if (_hasBeenLoaded == false){
       updateQuote(quoteski);
       _hasBeenLoaded = true;
     }
-    print(quoteski);
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -456,6 +451,33 @@ class _BingoPageState extends State<BingoPage> {
             ],
           ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Container(
+            height: 65,
+            width: 65,
+            child: FloatingActionButton(
+              backgroundColor: AppColors.selectedColor,
+              child: Icon(
+                  Icons.refresh,
+                size:45.0 ,
+              ),
+              onPressed: () {
+                _hasBeenPressed1 = false;
+                _hasBeenPressed2 = false;
+                _hasBeenPressed3 = false;
+                _hasBeenPressed4 = false;
+                _hasBeenPressed5 = false;
+                _hasBeenPressed6 = false;
+                _hasBeenPressed7 = false;
+                _hasBeenPressed8 = false;
+                _hasBeenPressed9 = false;
+                randomQuotes.clear();
+                var x = randomGenerator();
+                przypisanie(x);
+                setState(() {});
+            },
+            ),
+          ),
       ),
     );
   }

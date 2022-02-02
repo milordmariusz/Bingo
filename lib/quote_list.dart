@@ -359,6 +359,9 @@ class _QuoteListState extends State<QuoteList> {
   void quoteEdited(quote, index) {
     print(quote);
     var finalQuote = "";
+    if(quote.length >= 30){
+      quote = quote.substring(0, 30);
+    }
     List<String> quoteCharList = quote.split("");
     int counter = 0;
     bool enterReady = false;
